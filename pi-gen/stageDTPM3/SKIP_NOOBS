@@ -1,0 +1,2 @@
+NOOBS_NAME="Raspberry Pi OS Lite PM3 (64-bit)"
+NOOBS_DESCRIPTION="A port of Debian with Proxmrk3 but no desktop environment"
