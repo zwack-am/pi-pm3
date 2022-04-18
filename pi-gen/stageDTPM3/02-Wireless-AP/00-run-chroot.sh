@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-rfkill unblock wan
+#rfkill unblock wan
 
 lighttpd-enable-mod fastcgi-php
 service lighttpd force-reload
@@ -62,8 +62,8 @@ systemctl disable systemd-networkd
 cp config/raspap-bridge-br0-netdev /etc/systemd/network/raspap-bridge-br0.netdev
 cp config/raspap-br0-member-eth0.network /etc/systemd/network/raspap-br0-member-eth0.network 
 
-sed -i -E 's/^session\.cookie_httponly\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/session.cookie_httponly = 1/' /etc/php/7.3/cgi/php.ini
-sed -i -E 's/^;?opcache\.enable\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/opcache.enable = 1/' /etc/php/7.3/cgi/php.ini
+sed -i -E 's/^session\.cookie_httponly\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/session.cookie_httponly = 1/' /etc/php/7.4/cgi/php.ini
+sed -i -E 's/^;?opcache\.enable\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/opcache.enable = 1/' /etc/php/7.4/cgi/php.ini
 phpenmod opcache
 
 echo "net.ipv4.ip_forward=1" > /etc/sysctl.d/90_raspap.conf 
