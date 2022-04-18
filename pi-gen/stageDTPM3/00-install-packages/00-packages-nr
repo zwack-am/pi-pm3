@@ -11,3 +11,10 @@ libpython3-dev
 libssl-dev
 hostapd
 dnsmasq
+lighttpd
+iptables-persistent
+vnstat
+qrencode
+php7.3-cgi
+openvpn
+wireguard
