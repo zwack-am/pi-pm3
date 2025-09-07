@@ -4,7 +4,7 @@ cd /usr/local/bin
 
 for i in aarch64 arm armhf
 do
-  wget https://github.com/tsl0922/ttyd/releases/download/1.6.3/ttyd.${i} 
+  wget https://github.com/tsl0922/ttyd/releases/download/1.7.7/ttyd.${i} 
 done
   
 case `uname -m` in
@@ -16,6 +16,7 @@ esac
 cp  ttyd.${model}  /usr/local/bin/ttyd
 chown root:root /usr/local/bin/ttyd
 chmod a+x /usr/local/bin/ttyd
+USER_UID=$(id -u dt)
 
 cat > /etc/systemd/system/ttyd-bash.service << EOF
 [Unit]
@@ -28,7 +29,7 @@ WantedBy=multi-user.target
 [Service]
 User=dt
 WorkingDirectory=/home/dt
-ExecStart=/usr/local/bin/ttyd -p 8000 -u dt -m 1 -c dt:proxmark3 /usr/bin/bash
+ExecStart=/usr/local/bin/ttyd -p 8000 -W -u $USER_UID -m 1 -c dt:proxmark3 /usr/bin/bash
 Restart=always
 Type=simple
 RestartSec=1
@@ -47,7 +48,7 @@ WantedBy=multi-user.target
 [Service]
 User=dt
 WorkingDirectory=/home/dt
-ExecStart=/usr/local/bin/ttyd -p 8080 -u dt -m 1 /usr/local/bin/pm3
+ExecStart=/usr/local/bin/ttyd -p 8080 -W -u $USER_UID -m 1 /usr/local/bin/pm3
 Restart=always
 Type=simple
 RestartSec=1
